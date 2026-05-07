@@ -274,6 +274,52 @@ body::before {
 .stickycta__l small { font-size: 11px; opacity: 0.8; margin-left: 10px; }
 .stickycta__r { background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 500; }
 
+
+/* ── OGP card grid for media tabs ─────────────────── */
+.ogp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.ogpcard { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: all 0.25s; }
+.ogpcard:hover { border-color: var(--accent); box-shadow: 0 12px 28px rgba(176,74,94,0.14); transform: translateY(-2px); }
+.ogpcard__thumb { aspect-ratio: 16/9; position: relative; display: flex; align-items: center; justify-content: center; padding: 16px; overflow: hidden; }
+.ogpcard__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
+.ogpcard__thumb:has(.ogpcard__img) .ogpcard__source { display: none; }
+.ogpcard__thumb:has(.ogpcard__img) .ogpcard__num { z-index: 3; background: rgba(0,0,0,0.55); padding: 4px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+.ogpcard__thumb::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, transparent 60%); }
+.ogpcard__source { position: relative; color: #fff; font-family: var(--display); font-style: italic; font-size: 22px; font-weight: 600; letter-spacing: 0.04em; text-align: center; line-height: 1.2; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.ogpcard__num { position: absolute; top: 12px; right: 14px; font-family: var(--display); font-style: italic; font-size: 13px; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; }
+.ogpcard__body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.ogpcard__t { font-family: var(--serif); font-size: 14px; font-weight: 600; line-height: 1.55; color: var(--ink); flex: 1; }
+.ogpcard__meta { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--ink-soft); padding-top: 10px; border-top: 1px dashed var(--border-light); }
+.ogpcard__arrow { color: var(--accent); font-size: 14px; font-weight: 600; }
+
+/* ── Past seminars carousel ─────────────────── */
+.past { padding: 80px 0 40px; background: linear-gradient(180deg, transparent 0%, var(--rose-soft) 50%, transparent 100%); margin-top: 40px; overflow: hidden; }
+.past__head { max-width: var(--max); margin: 0 auto 40px; padding: 0 24px; text-align: center; }
+.past__kicker { font-family: var(--display); font-style: italic; font-size: 15px; color: var(--gold); letter-spacing: 0.16em; margin-bottom: 8px; display: block; font-weight: 500; }
+.past__title { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
+.past__title em { color: var(--accent); font-style: normal; }
+.past__viewport { overflow: hidden; mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%); }
+.past__track { display: flex; gap: 24px; width: max-content; animation: pastscroll 60s linear infinite; padding: 16px 0; }
+@keyframes pastscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.past__viewport:hover .past__track { animation-play-state: paused; }
+
+.pastcard { width: 380px; flex-shrink: 0; background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(176,74,94,0.10); border: 1px solid var(--border-light); display: flex; flex-direction: column; }
+.pastcard__img { aspect-ratio: 1200/628; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.pastcard__img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.pastcard__img-fallback { position: relative; z-index: 1; text-align: center; color: #fff; }
+.pastcard__img-fallback-title { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+.pastcard__img-fallback-date { font-family: var(--display); font-style: italic; font-size: 16px; opacity: 0.92; letter-spacing: 0.06em; }
+.pastcard__body { padding: 18px 20px; }
+.pastcard__date { font-family: var(--display); font-style: italic; font-size: 13px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 600; }
+.pastcard__title { font-family: var(--serif); font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink); margin-bottom: 10px; }
+.pastcard__guest { display: flex; gap: 6px; align-items: baseline; font-size: 12.5px; line-height: 1.55; color: var(--ink-mid); }
+.pastcard__guest-label { font-size: 10px; font-weight: 700; padding: 2px 7px; background: var(--accent); color: #fff; border-radius: 999px; letter-spacing: 0.06em; flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+
+@media (max-width: 800px) {
+  .pastcard { width: 280px; }
+  .past__title { font-size: 22px; }
+  .past { padding: 56px 0 32px; }
+}
+
 /* ── modal (kept for Takeoka detail) ─────────────────────────── */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; animation: fadein 0.2s; }
 @keyframes fadein { from { opacity: 0; } }
@@ -350,8 +396,8 @@ const BENEFITS = [
   {
     num: "01",
     label: "GLOBAL TREND",
-    title: "原料の地殻変動を読む",
-    body: "in-cosmetics global 2026から抽出する、次の3年に来る成分カテゴリと潮流を体系的に整理。世界の最先端から、自社企画に転用できる知見を持ち帰れます。",
+    title: "次に来る成分が、3年先まで見える。",
+    body: "in-cosmetics global 2026から抽出する、ヒットの種となる成分カテゴリ。世界の最先端から、自社企画に転用できる知見を持ち帰れます。",
     tags: ["インコスメ2026", "成分トレンド", "次世代カテゴリ"],
     icon: (
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -365,8 +411,8 @@ const BENEFITS = [
   {
     num: "02",
     label: "BRAND DESIGN",
-    title: "成分＝証拠としての設計",
-    body: "配合素材ではなく「ブランドの約束を支える証拠」として成分を再定義する考え方。R&Dとマーケティングの境界を越える設計思想を学べます。",
+    title: "「成分配合」から「成分の物語」へ。",
+    body: "配合素材ではなく「ブランドの約束を支える証拠」として成分を再定義。R&Dとマーケティングの境界を越える設計思想を学べます。",
     tags: ["ブランド設計", "成分訴求", "証拠ベース"],
     icon: (
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -381,8 +427,8 @@ const BENEFITS = [
   {
     num: "03",
     label: "CASE STUDY",
-    title: "ヒットの分解と再現",
-    body: "過去〜現在の化粧品ヒット商品の成分訴求を構造分解。「なぜ売れたか」を再現可能なマーケパターンへ変換し、自社企画に翻訳する方法を解説します。",
+    title: "あのヒット商品を、構造で読み解く。",
+    body: "過去〜現在の化粧品ヒット商品の成分訴求を分解。「なぜ売れたか」を再現可能なマーケパターンへ変換し、自社企画に翻訳します。",
     tags: ["ヒット分析", "再現性", "マーケパターン"],
     icon: (
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -397,8 +443,8 @@ const BENEFITS = [
   {
     num: "04",
     label: "FRAMEWORK",
-    title: "「3S」設計フレーム",
-    body: "Substance（成分）・Story（物語）・Sensation（体験）の掛け算で商品価値を組み立てる、実装可能な設計図。明日からの企画書に活用できるフレームワーク。",
+    title: "ヒットを必然にする、「3S」設計図。",
+    body: "Substance（成分）・Story（物語）・Sensation（体験）の掛け算で商品価値を組み立てる、明日の企画書から使える実装可能なフレームワーク。",
     tags: ["3Sフレーム", "商品設計", "実装可能"],
     icon: (
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -414,8 +460,8 @@ const BENEFITS = [
   {
     num: "05",
     label: "CONCRETE EXAMPLE",
-    title: "原料変換の具体例",
-    body: "明日の商品企画会議に持ち帰れる、原料発掘から訴求設計までの具体的な変換例。抽象論ではなく「使える」知見として、即実践に繋がる事例を共有します。",
+    title: "明日の会議室で、すぐに動かせる。",
+    body: "原料発掘から訴求設計までを変換した、即実践に繋がる具体例。抽象論ではなく「使える」知見として持ち帰れる、企画担当者必見の事例集。",
     tags: ["即実践", "企画会議", "変換事例", "原料→訴求"],
     icon: (
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -427,7 +473,6 @@ const BENEFITS = [
     )
   }
 ];
-
 const PROGRAM = [
   { time: "16:00", end: "16:10", kind: "OPENING", title: "開会挨拶", host: "GMO ／ 株式会社ベイコスメティックス" },
   { time: "16:10", end: "16:50", kind: "SESSION 01", title: "「成分買い」の終焉：売れ続けるための「3S」商品設計図", subtitle: "インコスメ2026から導く、ヒットを必然にするブランド開発", host: "竹岡 篤史", role: "美容成分研究家／スキンケア成分ハンター",
@@ -514,10 +559,75 @@ function SectionHead({ kicker, title, sub }) {
   );
 }
 
+const PAST_SEMINARS = [
+  {
+    img: "assets/past-2025-06-30.jpg",
+    date: "2025.06.30",
+    title: "AI×成分×販促 化粧品業界 最新トレンド展",
+    mainGuest: "メインゲスト：美容タレント GENKING. ／ ByteDance 高倉 将平 氏"
+  },
+  {
+    img: "assets/past-2025-08-20.jpg",
+    date: "2025.08.20",
+    title: "花王と@cosmeに聞く 国民的ブランドの作り方",
+    mainGuest: "メインゲスト：花王 THE ANSWER ブランドマネージャー 野原 聡 氏"
+  },
+  {
+    img: "assets/past-2025-10-28.jpg",
+    date: "2025.10.28",
+    title: "化粧品業界 新規参入セミナー",
+    mainGuest: "メインゲスト：株式会社アイスタイル @cosme for BUSINESS マネージャー 原 久美子 氏"
+  },
+  {
+    img: "assets/past-2025-12-02.jpg",
+    date: "2025.12.02",
+    title: "J-Beautyの最強グローバル戦略",
+    mainGuest: "メインゲスト：コーセー台湾 董事長兼総経理 石川 茂樹 氏"
+  },
+  {
+    img: "assets/past-2026-03-17.jpg",
+    date: "2026.03.17",
+    title: "変化の時代の「必然のヒット」の作り方",
+    mainGuest: "メインゲスト：ファミリーマート CMO 足立 光 氏"
+  }
+];
+
+function PastSeminars() {
+  // Duplicate the list to create seamless loop
+  const items = [...PAST_SEMINARS, ...PAST_SEMINARS];
+  return (
+    <section className="past">
+      <div className="past__head">
+        <span className="past__kicker">Past Seminars</span>
+        <h2 className="past__title"><em>過去セミナー</em></h2>
+      </div>
+      <div className="past__viewport">
+        <div className="past__track">
+          {items.map((s, i) => (
+            <article key={i} className="pastcard">
+              <div className="pastcard__img">
+                <img src={s.img} alt={s.title} loading="lazy" />
+              </div>
+              <div className="pastcard__body">
+                <div className="pastcard__date">{s.date}</div>
+                <h3 className="pastcard__title">{s.title}</h3>
+                <div className="pastcard__guest">
+                  <span className="pastcard__guest-label">登壇</span>
+                  <span>{s.mainGuest}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Lead() {
   return (
     <section className="lead" id="about">
-      <SectionHead kicker="About the Seminar" title='なぜ今、<span class="section__title-accent">このセミナーなのか</span>' sub="本セミナーの背景と、得られる価値について" />
+      <SectionHead kicker="About the Seminar" title='なぜ今、<span class="section__title-accent">このセミナーなのか</span>' />
       <div className="lead__text">
         <p>
           成分名だけで売れる時代は終わりました。しかし「成分で信じられる理由」は、売れ続ける化粧品の根幹であり続けています。
@@ -544,7 +654,7 @@ function Lead() {
 function Benefits() {
   return (
     <section className="section">
-      <SectionHead kicker="What You'll Take Home" title="セミナーで<span class='section__title-accent'>持ち帰れる5つの視点</span>" sub="翌朝の企画会議で、すぐに使える知見をお持ち帰りいただきます。" />
+      <SectionHead kicker="What You'll Take Home" title="セミナーで<span class='section__title-accent'>持ち帰れる5つの視点</span>" />
       <div className="benefits__list">
         {BENEFITS.map(b => (
           <article key={b.num} className="benefit">
@@ -571,7 +681,7 @@ function Benefits() {
 function Speakers({ onOpenTakeoka, onOpenIshii }) {
   return (
     <section className="section" id="speakers">
-      <SectionHead kicker="Speakers" title="業界を牽引する<span class='section__title-accent'>2名の登壇者</span>" sub="成分を発掘する研究家と、ブランドに訴求するマーケター。両者の視点を一度に学べる希少な機会です。" />
+      <SectionHead kicker="Speakers" title="業界を牽引する<span class='section__title-accent'>2名の登壇者</span>" />
       <div className="speakers__grid">
         <div className="speaker">
           <div className="speaker__photo-wrap">
@@ -650,8 +760,7 @@ function TakeokaModal({ open, onClose }) {
         <nav className="modal__tabs">
           {[
             { id: "awards", label: "受賞歴" },
-            { id: "media", label: "メディア掲載" },
-            { id: "video", label: "動画" }
+            { id: "media", label: "メディア掲載" }
           ].map(t => (
             <button key={t.id} className={"modal__tab" + (tab === t.id ? " is-active" : "")} onClick={() => setTab(t.id)}>
               {t.label}
@@ -683,60 +792,31 @@ function TakeokaModal({ open, onClose }) {
           {tab === "media" && (
             <div>
               <p className="modal__note">業界メディア・Web媒体での取材記事・寄稿。</p>
-              <ul className="medialist">
+              <div className="ogp-grid">
                 {[
-                  { url: "https://www.wwdjapan.com/articles/2269867", source: "WWDJAPAN", date: "記事 ↗", title: "化粧品研究開発のプロ・竹岡篤史氏から見た、『無印良品』化粧品の実力" },
-                  { url: "https://www.wwdjapan.com/articles/1833756", source: "WWDJAPAN", date: "記事 ↗", title: "「成分トレンド」で注目度増す！ 今、なぜ「ペプチド」なのか？" },
-                  { url: "https://mi-mollet.com/articles/-/48571", source: "mi-mollet", date: "インタビュー ↗", title: "化粧品成分ハンターが選ぶ「スキンケアを変えるならこの１本」。美白・UVケアの最前線" },
-                  { url: "https://www.meiji.co.jp/hello-chocolate/column/155/", source: "明治 Hello Chocolate", date: "対談 ↗", title: "世界をまたにかける『スキンケア成分ハンター』竹岡篤史氏が語る、カカオセラミドへの期待" },
-                  { url: "https://www.karakoto.com/supervisor/73929/", source: "からだにいいこと", date: "監修者ページ ↗", title: "竹岡篤史 監修記事一覧" },
-                  { url: "https://www.fashionsnap.com/article/profile/?profile=%E7%AB%B9%E5%B2%A1%E7%AF%A4%E5%8F%B2", source: "FASHIONSNAP", date: "プロフィール ↗", title: "竹岡篤史 プロフィール・関連記事一覧" }
+                  { url: "https://www.wwdjapan.com/articles/2269867", source: "WWDJAPAN", date: "記事", title: "化粧品研究開発のプロ・竹岡篤史氏から見た、『無印良品』化粧品の実力", color: "#000", ogp: "https://media.wwdjapan.com/wp-content/uploads/2025/11/27204931/1127_takeoka_og.jpg" },
+                  { url: "https://www.wwdjapan.com/articles/1833756", source: "WWDJAPAN", date: "記事", title: "「成分トレンド」で注目度増す！ 今、なぜ「ペプチド」なのか？", color: "#000", ogp: "https://media.wwdjapan.com/wp-content/uploads/2024/06/07162807/20240607_beauty_og.jpg" },
+                  { url: "https://mi-mollet.com/articles/-/48571", source: "mi-mollet", date: "インタビュー", title: "化粧品成分ハンターが選ぶ「スキンケアを変えるならこの１本」。美白・UVケアの最前線", color: "#c89bb1", ogp: "https://mi-mollet.ismcdn.jp/mwimgs/5/5/-/img_55be94821fba04168197ebdc52ae281f257587.jpg?rd=202604221402" },
+                  { url: "https://www.meiji.co.jp/hello-chocolate/column/155/", source: "明治 Hello Chocolate", date: "対談", title: "世界をまたにかける『スキンケア成分ハンター』竹岡篤史氏が語る、カカオセラミドへの期待", color: "#7c3a1d", ogp: "https://www.meiji.co.jp/hello-chocolate/column/data/media/293-thumbnail.jpg" },
+                  { url: "https://www.karakoto.com/supervisor/73929/", source: "からだにいいこと", date: "監修者", title: "竹岡篤史 監修記事一覧", color: "#5b8a72", ogp: "https://www.karakoto.com/wp-content/uploads/2025/07/takeoka-atsushi.jpg" },
+                  { url: "https://www.fashionsnap.com/article/profile/?profile=%E7%AB%B9%E5%B2%A1%E7%AF%A4%E5%8F%B2", source: "FASHIONSNAP", date: "プロフィール", title: "竹岡篤史 プロフィール・関連記事一覧", color: "#1a1a1a", ogp: "https://lh5.googleusercontent.com/-19KSYsqhkiE/UU6LKKS88WI/AAAAAAAAS3o/E1tRTeS_gNE/s949/gplus-130321_001-2.jpg" }
                 ].map((m, i) => (
-                  <li key={i} style={{listStyle: "none"}}>
-                    <a href={m.url} target="_blank" rel="noopener noreferrer" className="medialist__row" style={{textDecoration: "none", color: "inherit"}} onClick={(e) => { e.stopPropagation(); window.open(m.url, "_blank", "noopener,noreferrer"); e.preventDefault(); }}>
-                      <span className="medialist__num">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="medialist__t">
-                        <span style={{display: "inline-block", fontSize: "11px", color: "var(--accent)", fontWeight: 600, marginRight: "8px"}}>{m.source}</span>
-                        {m.title}
-                      </span>
-                      <span className="medialist__date">{m.date}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {tab === "video" && (
-            <div>
-              <p className="modal__note">YouTubeでの出演・公式チャンネル動画</p>
-              <div className="modal__video-grid">
-                {[
-                  {
-                    id: "Rx5kjVhTnx0",
-                    title: "【ampuleイベントレポート】2025年注目のトレンド成分とは？スキンケア成分ハンターの竹岡篤史さんに徹底質問",
-                    src: "ampule",
-                    date: "2025.06"
-                  },
-                  {
-                    id: "7JfK78WhmNY",
-                    title: "目元のクマ対策の化粧品原料紹介中",
-                    src: "竹岡篤史【化粧品成分ハンター】公式",
-                    date: "2022.05"
-                  }
-                ].map((v, i) => (
-                  <a key={i} className="vidcard" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation(); window.open(`https://www.youtube.com/watch?v=${v.id}`, "_blank", "noopener,noreferrer"); e.preventDefault(); }}>
-                    <div className="vidcard__thumb">
-                      <img src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} style={{width: "100%", height: "100%", objectFit: "cover"}} />
-                      <div className="vidcard__play" style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}></div>
+                  <a key={i} className="ogpcard" href={m.url} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation(); window.open(m.url, "_blank", "noopener,noreferrer"); e.preventDefault(); }}>
+                    <div className="ogpcard__thumb" style={{background: `linear-gradient(135deg, ${m.color} 0%, ${m.color}cc 100%)`}}>
+                      {m.ogp && <img src={m.ogp} alt={m.title} className="ogpcard__img" loading="lazy" onError={(e) => { e.target.style.display = 'none'; }} />}
+                      <span className="ogpcard__source">{m.source}</span>
+                      <span className="ogpcard__num">N°{String(i + 1).padStart(2, "0")}</span>
                     </div>
-                    <div className="vidcard__t">{v.title}</div>
-                    <div className="vidcard__src">YouTube ／ {v.src} ／ {v.date}</div>
+                    <div className="ogpcard__body">
+                      <div className="ogpcard__t">{m.title}</div>
+                      <div className="ogpcard__meta"><span>{m.date}</span><span className="ogpcard__arrow">↗</span></div>
+                    </div>
                   </a>
                 ))}
               </div>
             </div>
           )}
+
 
         </div>
       </div>
@@ -764,12 +844,12 @@ function IshiiModal({ open, onClose }) {
   ];
 
   const articles = [
-    { url: "https://note.com/141ishii/n/na578fec5ef84", source: "note", date: "40万PV超", title: "【1時間で分かる】P&G流マーケティングの教科書" },
-    { url: "https://marketingnative.jp/marketing-demo/", source: "Marketing Native", date: "Interview", title: "「P&G流マーケティングの教科書」が40万PV超え！石井賢介が語る「マーケティング思考の学び方」" },
-    { url: "https://markezine.jp/article/detail/41062", source: "MarkeZine", date: "Article", title: "半径10mのマーケティングへ — 「広告だけでは売れない時代」にマーケターに求められる力" },
-    { url: "https://kigyo.gmo/magazine/interview/md/", source: "起業の窓口", date: "Interview", title: "【株式会社MD】製造と企画の両輪で挑む、ビューティーケアの新境地" },
-    { url: "https://xtrend.nikkei.com/authors/19/00501/", source: "日経クロストレンド", date: "執筆者ページ", title: "石井賢介 連載・執筆記事一覧" },
-    { url: "https://note.com/141ishii/all", source: "note", date: "記事一覧", title: "石井賢介 noteアカウント（全記事）" }
+    { url: "https://note.com/141ishii/n/na578fec5ef84", source: "note", date: "40万PV超", title: "【1時間で分かる】P&G流マーケティングの教科書", color: "#41c9b4", ogp: "https://assets.st-note.com/production/uploads/images/110682490/rectangle_large_type_2_1182514729cf7758a92090a368232afd.png?fit=bounds&quality=85&width=1280" },
+    { url: "https://marketingnative.jp/marketing-demo/", source: "Marketing Native", date: "Interview", title: "「P&G流マーケティングの教科書」が40万PV超え！石井賢介が語る「マーケティング思考の学び方」", color: "#0066cc", ogp: "https://marketingnative.jp/wp/wp-content/uploads/2020/09/pc_interview-4.jpg" },
+    { url: "https://markezine.jp/article/detail/41062", source: "MarkeZine", date: "Article", title: "半径10mのマーケティングへ — 「広告だけでは売れない時代」にマーケターに求められる力", color: "#1f6feb", ogp: "https://markezine.jp/static/images/article/41062/41062_fb.png" },
+    { url: "https://kigyo.gmo/magazine/interview/md/", source: "起業の窓口", date: "Interview", title: "【株式会社MD】製造と企画の両輪で挑む、ビューティーケアの新境地", color: "#00813a", ogp: "https://column.kigyo.gmo/wp-content/uploads/2025/12/DSC07015.jpg" },
+    { url: "https://xtrend.nikkei.com/authors/19/00501/", source: "日経クロストレンド", date: "執筆者ページ", title: "石井賢介 連載・執筆記事一覧", color: "#d52428", ogp: "https://xtrend.nikkei.com/images/2018/common/ogp_nikkeixtrend.png" },
+    { url: "https://note.com/141ishii/all", source: "note", date: "記事一覧", title: "石井賢介 noteアカウント（全記事）", color: "#41c9b4", ogp: "https://assets.st-note.com/poc-image/manual/production/default_top_ogp_202212.png" }
   ];
 
   const career = [
@@ -831,20 +911,21 @@ function IshiiModal({ open, onClose }) {
           {tab === "media" && (
             <div>
               <p className="modal__note">noteの執筆記事、業界メディアでの掲載・取材記事。</p>
-              <ul className="medialist">
+              <div className="ogp-grid">
                 {articles.map((m, i) => (
-                  <li key={i} style={{listStyle: "none"}}>
-                    <a href={m.url} target="_blank" rel="noopener noreferrer" className="medialist__row" style={{textDecoration: "none", color: "inherit"}} onClick={(e) => { e.stopPropagation(); window.open(m.url, "_blank", "noopener,noreferrer"); e.preventDefault(); }}>
-                      <span className="medialist__num">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="medialist__t">
-                        <span style={{display: "inline-block", fontSize: "11px", color: "var(--accent)", fontWeight: 600, marginRight: "8px"}}>{m.source}</span>
-                        {m.title}
-                      </span>
-                      <span className="medialist__date">{m.date} ↗</span>
-                    </a>
-                  </li>
+                  <a key={i} className="ogpcard" href={m.url} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation(); window.open(m.url, "_blank", "noopener,noreferrer"); e.preventDefault(); }}>
+                    <div className="ogpcard__thumb" style={{background: `linear-gradient(135deg, ${m.color || '#2a2a2a'} 0%, ${(m.color || '#2a2a2a')}cc 100%)`}}>
+                      {m.ogp && <img src={m.ogp} alt={m.title} className="ogpcard__img" loading="lazy" onError={(e) => { e.target.style.display = 'none'; }} />}
+                      <span className="ogpcard__source">{m.source}</span>
+                      <span className="ogpcard__num">N°{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <div className="ogpcard__body">
+                      <div className="ogpcard__t">{m.title}</div>
+                      <div className="ogpcard__meta"><span>{m.date}</span><span className="ogpcard__arrow">↗</span></div>
+                    </div>
+                  </a>
                 ))}
-              </ul>
+              </div>
             </div>
           )}
 
@@ -877,7 +958,7 @@ function Program() {
   const [openIdx, setOpenIdx] = useState(1);
   return (
     <section className="section" id="program">
-      <SectionHead kicker="Program" title="<span class='program__hook'>＼ 2時間で完結 ／</span><span class='section__title-accent'>セミナープログラム</span>" sub="2026年6月8日（月）16:00 — 18:20（交流会 18:20 — 19:00） ／ 各セッションをクリックすると詳細が表示されます。" />
+      <SectionHead kicker="Program" title="<span class='program__hook'>＼ 2時間で完結 ／</span><span class='section__title-accent'>セミナープログラム</span>" />
 
       <div className="program__list">
         {PROGRAM.map((p, i) => {
@@ -919,7 +1000,7 @@ function Program() {
 function Access() {
   return (
     <section className="section" id="access">
-      <SectionHead kicker="Event Details" title="開催日時・<span class='section__title-accent'>会場のご案内</span>" sub="GMOオフィスにて、オフライン限定で開催いたします。" />
+      <SectionHead kicker="Event Details" title="開催日時・<span class='section__title-accent'>会場のご案内</span>" />
 
       <table className="access__table">
         <tbody>
@@ -928,7 +1009,7 @@ function Access() {
             ["会場", "GMOインターネットグループ 第２本社", "GMOフクラス 16F（渋谷）"],
             ["アクセス", "JR渋谷駅 西口 徒歩1分", "東京メトロ 地下鉄 B5出口 直結"],
             ["定員", "100名限定", null],
-            ["参加費", "※要決定", null],
+            ["参加費", "無料", null],
             ["主催", "株式会社ベイコスメティックス", null],
             ["協力", "GMOAI天秤 様 ／ 竹岡 篤史 様", null]
           ].map(([k, v, sub], i) => (
@@ -967,7 +1048,7 @@ function Apply() {
   return (
     <section className="apply" id="apply">
       <div className="apply__inner">
-        <SectionHead kicker="Application" title="セミナーへの<span class='section__title-accent'>参加お申し込み</span>" sub="下記フォームよりお申込みください。事務局より受付確認のご連絡を差し上げます。" />
+        <SectionHead kicker="Application" title="セミナーへの<span class='section__title-accent'>参加お申し込み</span>" />
 
         <div className="apply__gform">
           <iframe
@@ -1006,7 +1087,7 @@ function Field({ label, value, onChange, placeholder, required, error, type = "t
 function Organizer() {
   return (
     <section className="section">
-      <SectionHead kicker="Organizer" title="本セミナーの<span class='section__title-accent'>主催者について</span>" sub="化粧品の商品開発・マーケティングを軸とした事業会社が主催しています。" />
+      <SectionHead kicker="Organizer" title="本セミナーの<span class='section__title-accent'>主催者について</span>" />
       <div className="organizer__inner">
         <div className="organizer__name">株式会社ベイコスメティックス</div>
         <p className="organizer__body">マーケティングを軸とした商品・処方開発からチャネル支援までをディレクションする、化粧品事業会社。大手メーカーの商品企画チームとの協働を通じ、成分発掘から訴求設計までを一気通貫で支援する。</p>
@@ -1069,6 +1150,7 @@ function App() {
       <TopBar />
       <main>
         <Hero />
+        <PastSeminars />
         <Lead />
         <Benefits />
         <Speakers
